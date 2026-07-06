@@ -14,6 +14,16 @@ What it can do-
 	•	Fix bugs in it
 	•	Add comments to it
 	•	Insert AI-generated code directly into your file with one click
+
+	## Install
+
+Download the latest `.vsix` from [Releases](https://github.com/samiyaaashariq/pairmind/releases), then run:
+
+    code --install-extension pairmind-0.1.1.vsix
+
+Or in VS Code: Extensions view → `...` menu → **Install from VSIX...** → select the downloaded file.
+
+
 	
 How to run it-
 
