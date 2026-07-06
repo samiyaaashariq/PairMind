@@ -1,0 +1,157 @@
+{
+  "name": "pairmind",
+  "displayName": "PairMind",
+  "description": "An AI pair programmer with chat, multi-provider LLM support, and context-aware code actions.",
+  "version": "0.1.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages", "Machine Learning", "Other"],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map"
+  },
+
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.x",
+    "webpack": "^5.x",
+    "webpack-cli": "^5.x",
+    "ts-loader": "^9.x"
+  },
+
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pairmind",
+          "title": "PairMind",
+          "icon": "media/icon.png"
+        }
+      ]
+    },
+
+    "views": {
+      "pairmind": [
+        {
+          "type": "webview",
+          "id": "pairmind.chatView",
+          "name": "Chat"
+        }
+      ]
+    },
+
+    "commands": [
+      {
+        "command": "pairmind.openChat",
+        "title": "PairMind: Open Chat",
+        "category": "PairMind"
+      },
+      {
+        "command": "pairmind.explainCode",
+        "title": "PairMind: Explain Code",
+        "category": "PairMind"
+      },
+      {
+        "command": "pairmind.refactorCode",
+        "title": "PairMind: Refactor Code",
+        "category": "PairMind"
+      },
+      {
+        "command": "pairmind.writeTests",
+        "title": "PairMind: Write Tests",
+        "category": "PairMind"
+      },
+      {
+        "command": "pairmind.fixBugs",
+        "title": "PairMind: Fix Bugs",
+        "category": "PairMind"
+      },
+      {
+        "command": "pairmind.generateComments",
+        "title": "PairMind: Generate Comments",
+        "category": "PairMind"
+      }
+    ],
+
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "pairmind.explainCode",
+          "group": "pairmind@1"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "pairmind.refactorCode",
+          "group": "pairmind@2"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "pairmind.writeTests",
+          "group": "pairmind@3"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "pairmind.fixBugs",
+          "group": "pairmind@4"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "pairmind.generateComments",
+          "group": "pairmind@5"
+        }
+      ]
+    },
+
+    "configuration": {
+      "title": "PairMind",
+      "properties": {
+        "pairmind.provider": {
+          "type": "string",
+          "enum": ["ollama", "openai", "grok"],
+          "default": "ollama",
+          "description": "Which AI provider PairMind uses for chat and code actions."
+        },
+        "pairmind.ollama.baseUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Base URL of your local Ollama server."
+        },
+        "pairmind.ollama.model": {
+          "type": "string",
+          "default": "codellama",
+          "description": "Ollama model name to use (must already be pulled, e.g. via 'ollama pull codellama')."
+        },
+        "pairmind.openai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your OpenAI API key.",
+          "markdownDescription": "Your OpenAI API key. Get one at [platform.openai.com](https://platform.openai.com/api-keys). **Stored in plaintext settings** — see note below on using Secret Storage instead."
+        },
+        "pairmind.openai.model": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "OpenAI model to use."
+        },
+        "pairmind.grok.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your xAI Grok API key.",
+          "markdownDescription": "Your xAI Grok API key. Get one at [console.x.ai](https://console.x.ai/). **Stored in plaintext settings** — see note below on using Secret Storage instead."
+        },
+        "pairmind.grok.model": {
+          "type": "string",
+          "default": "grok-2-latest",
+          "description": "Grok model to use."
+        }
+      }
+    }
+  }
+}
