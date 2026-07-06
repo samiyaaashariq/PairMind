@@ -20,7 +20,8 @@ What it can do-
 	2.	Open a terminal in the project folder and run:
 npm install
 npm run compile
-3.	Open the project in VS Code
+
+	3.	Open the project in VS Code
 	4.	Press F5 to launch a test window with the extension running
 	5.	Open the Command Palette (Ctrl+Shift+P) and type: PairMind: Open Chat
 
@@ -31,6 +32,7 @@ Option 1: Free, runs on your computer (Ollama)
 	1.	Download Ollama from ollama.com/download
 	2.	Open a terminal and run:
 ollama pull qwen2.5-coder:1.5b
+
 	3.	That’s it — PairMind uses this by default
 
 Option 2: Faster, cloud-based (OpenAI or Grok)
